@@ -1,0 +1,17 @@
+some:
+  unrelated:
+    property: untouched
+# TODO [PG17.10-oldsnapshot]: old_snapshot_threshold removed in PG17 - no replacement, this protection no longer exists
+# old_snapshot_threshold: -1
+# TODO [PG17.10-tracerecovery]: trace_recovery_messages removed in PG17 - no replacement
+# trace_recovery_messages: notice
+# TODO [PG17.10-userns]: db_user_namespace removed in PG17 - no replacement, this deprecated auth mechanism no longer exists
+# db_user_namespace: off
+# TODO [RMQ4.3.4]: cluster_partition_handling is a no-op - remove or re-plan
+cluster_partition_handling: pause_minority
+spring:
+  rabbitmq:
+    listener:
+      simple:
+        # TODO [RMQ4.3.4-globalqos]: global_qos is silently downgraded to per-consumer prefetch (N x M messages may be in flight, not N) - verify that's acceptable, or restructure to per-consumer channels.
+        global-qos: true
